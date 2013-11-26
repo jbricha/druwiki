@@ -1,0 +1,53 @@
+<?php
+/**
+ * Implementation of hook_init().
+ */
+function demos_filter_init() {
+	
+	if(current_path()=='toutes-les-demos') {
+		drupal_add_css(drupal_get_path('module', 'demos_filter') . '/css/demos_filter.css', array('group' => CSS_DEFAULT));
+		drupal_add_js(drupal_get_path('module', 'demos_filter') . '/js/demos_filter.js');
+	}
+	
+}
+
+/**
+ * Implementation of hook_block_info().
+ */
+function demos_filter_block_info() {    
+  $blocks['demos_filter'] = array(
+    'info' => t('Demos Filter'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implementation of hook_block_view().
+ */
+function demos_filter_block_view($delta = '') {
+  // The $delta parameter tells us which block is being requested.
+  switch ($delta) {
+    case 'demos_filter':
+      $block['content'] = demos_filter_block_contents();
+      break;
+  }
+
+  return $block;
+}
+function demos_filter_block_contents() {
+	$vid = taxonomy_vocabulary_machine_name_load('type_de_projet')->vid;
+	$terms = taxonomy_get_tree($vid);
+	// print_r($terms);
+	$output = '<span style="color:grey;">Filtrer par nom de client : </span><br>';
+	$output .= '<input  id="title" class="text-input-title" placeholder="séparez les nom avec des virgules" type="text"><br>';
+	$output .= '<span style="color:grey;">Filtrer par type de réalisation : </span><br>';
+	$output .= '<div>';
+ 	foreach($terms as $term) {
+		$output .= '<button class="type-filter btn">' . $term->name . '</button>';
+	}
+	$output .= '</div>';
+	
+	return $output;
+  		
+}

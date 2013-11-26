@@ -1,0 +1,22 @@
+#block-demos-filter-demos-filter {
+	text-align: center;
+}
+
+#block-demos-filter-demos-filter .text-input-title {
+	width: 300px;
+}
+
+#block-demos-filter-demos-filter .btn.type-filter {
+	margin-right : 5px;
+	margin-top : 5px;
+}
+#block-demos-filter-demos-filter .btn.type-filter.choosed {
+	background: #F5AF0A;
+}
+
+.view.view-d-mos .demos-row {
+	display : none;
+}
+.view.view-d-mos .demos-row.showedTitle.showedType {
+	display : inline;
+}

@@ -1,0 +1,4 @@
+name = Demos Filter
+description = Filter demos view page
+package = M4C
+core = 7.x
